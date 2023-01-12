@@ -30,10 +30,14 @@ python preprocess/wsi/bin/patch_gen.py {wsi_path} {coords_path} {patch_path}
 ```
 
 ## Train and test the model
+Run main.py to train and test the model, put the checkpoints in "checkpoints" file. 
+
+###Anomaly Map Generation
+set vis = Ture in main.py
 ```shell
-python main.py original_dataset/camelyon16/testing/images/ checkpoints/0detection_camelyon166.pth preprocess/configs/wideresnet_50.json original_dataset/camelyon16/testing/images_tissue/ result/
+python main.py {wsi_path} {ckpt_path} {cfg_path} {mask_path} {probs_map_path}
 ```
-Please save the anomaly maps for tumor and normal WSIs in separate files: {probs_map_path}/good for normal and {probs_map_path}/bad for tumor
+cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the tissue mask. Please put the anomaly maps for tumor and normal WSIs in separate files: {probs_map_path}/good for normal and {probs_map_path}/bad for tumor.
 
 ## Postprocess
 ### AUROC Evaluation
