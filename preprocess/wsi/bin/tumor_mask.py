@@ -16,8 +16,8 @@ parser.add_argument('wsi_path', default=None, metavar='WSI_PATH', type=str,
                     help='Path to the WSI file')
 parser.add_argument('json_path', default=None, metavar='JSON_PATH', type=str,
                     help='Path to the JSON file')
-parser.add_argument('npy_path', default=None, metavar='NPY_PATH', type=str,
-                    help='Path to the output npy mask file')
+parser.add_argument('tumor_path', default=None, metavar='TUMOR_PATH', type=str,
+                    help='Path to the output tumor mask file')
 parser.add_argument('--level', default=6, type=int, help='at which WSI level'
                     ' to obtain the mask, default 6')
 
@@ -49,7 +49,7 @@ def run(args,file):
 
     mask_tumor = mask_tumor[:] > 127
     mask_tumor = np.transpose(mask_tumor)
-    np.save(os.path.join(args.npy_path,c), mask_tumor)
+    np.save(os.path.join(args.tumor_path,c), mask_tumor)
 
 def main():
     logging.basicConfig(level=logging.INFO)

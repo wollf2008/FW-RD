@@ -14,8 +14,8 @@ parser = argparse.ArgumentParser(description='Get tissue mask of WSI and save'
                                  ' it in npy format')
 parser.add_argument('wsi_path', default=None, metavar='WSI_PATH', type=str,
                     help='Path to the WSI file')
-parser.add_argument('npy_path', default=None, metavar='NPY_PATH', type=str,
-                    help='Path to the output npy mask file')
+parser.add_argument('tissue_path', default=None, metavar='TISSUE_PATH', type=str,
+                    help='Path to the tissue mask file')
 parser.add_argument('--level', default=6, type=int, help='at which WSI level'
                     ' to obtain the mask, default 6')
 parser.add_argument('--RGB_min', default=50, type=int, help='min value for RGB'
@@ -47,7 +47,7 @@ def run(args,file):
     tissue_mask = tissue_S & tissue_RGB & min_R & min_G & min_B
     a = file
     a = a.replace('.tif','')
-    np.save(os.path.join(args.npy_path,a), tissue_mask)
+    np.save(os.path.join(args.tissue_path,a), tissue_mask)
 
 
 def main():

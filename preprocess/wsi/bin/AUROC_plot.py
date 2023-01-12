@@ -4,8 +4,16 @@ from sklearn.metrics import precision_recall_curve
 import os
 from sklearn.metrics import roc_auc_score,roc_curve, auc
 import logging
-import pandas as pd
-from scipy.ndimage import gaussian_filter
+import sys
+import argparse
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../')
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('probs_map_path', default=None, metavar='PROBS_MAP_PATH',
+                    type=str, help='Path to the input probs_map numpy file')
+args = parser.parse_args()
 
 def min_max_norm(image):
     a_min, a_max = image.min(), image.max()
@@ -44,11 +52,10 @@ def plot_roc(gt_y, prob_predicted_y):
 gt = []
 pr = []
 th = 2.01
-
-
-files = os.listdir('result/original/bad/')
+bad_path = os.path.join(args.probs_map_path,'bad/')
+files = os.listdir(bad_path)
 for file in files:
-    heatmap = np.load('result/original/bad/'+file)
+    heatmap = np.load(os.path.join(bad_path,file))
     heatmap = heatmap.flatten()
     heatmap_th = heatmap[heatmap>=th]
     if len(heatmap_th) == 0:
@@ -60,9 +67,10 @@ for file in files:
     pr.append(real)
     gt.append(1)
 
-files = os.listdir('result/original/good/')
+good_path = os.path.join(args.probs_map_path,'good/')
+files = os.listdir(good_path)
 for file in files:
-    heatmap = np.load('result/original/good/' + file)
+    heatmap = np.load(os.path.join(good_path,file))
     heatmap = heatmap.flatten()
     heatmap_th = heatmap[heatmap>=th]
     if len(heatmap_th) == 0:

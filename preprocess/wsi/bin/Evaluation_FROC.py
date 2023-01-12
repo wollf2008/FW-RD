@@ -180,31 +180,7 @@ def plotFROC(total_FPs, total_sensitivity):
         -
     """
     plt.figure(0).clf()
-
-    # Winner
-    a = [0.25,0.5,1,2,4,8]
-    b = [0.756,0.773,0.808,0.815,0.827,0.828]
-    print(sum(b)/6,type(sum(b)/6))
-    plt.plot(a, b, 'g', label=r'HMS & MIT II = 0.807')
-    # SFLCD
-    a = [0.25,0.5,1,2,4,8]
-    b = [0.3775,0.42581,0.518,0.6234,0.65268,0.7117]
-    plt.plot(a, b, 'y', label=r'SFLCD = 0.561')
-    #Our
     plt.plot(total_FPs, total_sensitivity, '-', color='r', label=r'Our = %0.3f' % float(sum(total_sensitivity)/6))
-
-    # TCBB
-    a = [0.25,0.5,1,2,4,8]
-    b = [0.3525,0.3893,0.4243,0.4539,0.524,0.567]
-    plt.plot(a, b, 'b', label=r'TCBB = 0.469')
-
-    # Baseline
-    a = [0.25,0.5,1,2,4,8]
-    b = [0.0218,0.0437,0.0841,0.1416,0.1726,0.2035]
-    plt.plot(a, b, 'c', label=r'Baseline = 0.111')
-
-
-    #fig = plt.figure()
     plt.xlim([0.25, 8])
     plt.ylim([0, 1])
     plt.xlabel('Average Number of False Positives', fontsize=12)

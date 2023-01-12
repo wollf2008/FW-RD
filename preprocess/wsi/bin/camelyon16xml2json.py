@@ -11,7 +11,7 @@ from wsi.data.annotation import Formatter  # noqa
 parser = argparse.ArgumentParser(description='Convert Camelyon16 xml format to'
                                  'internal json format')
 parser.add_argument('xml_path', default=None, metavar='XML_PATH', type=str,
-                    help='Path to the input Camelyon16 xml annotation')
+                    help='Path to the input Camelyon16 xml annotation file')
 parser.add_argument('json_path', default=None, metavar='JSON_PATH', type=str,
                     help='Path to the output annotation in json format')
 

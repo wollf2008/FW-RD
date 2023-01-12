@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(description="Get center points of patches "
                                              "from mask")
 parser.add_argument("mask_path", default=None, metavar="MASK_PATH", type=str,
                     help="Path to the mask npy file")
-parser.add_argument("txt_path", default=None, metavar="TXT_PATH", type=str,
+parser.add_argument("coords_path", default=None, metavar="TXT_PATH", type=str,
                     help="Path to the txt file")
 parser.add_argument("patch_number", default=None, metavar="PATCH_NUMB", type=int,
                     help="The number of patches extracted from WSI")
@@ -82,7 +82,7 @@ def run(args, mask_path):
         name = np.full((sampled_points.shape[0], 1), mask_name)
         center_points = np.hstack((name, sampled_points))
 
-        txt_path = args.txt_path
+        txt_path = args.coords_path
 
         with open(txt_path, "a") as f:
             np.savetxt(f, center_points, fmt="%s", delimiter=",")
