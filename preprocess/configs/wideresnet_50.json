@@ -1,0 +1,9 @@
+{
+  "model": "wide_resnet50",
+  "batch_size": 1,
+  "image_size": 256,
+  "crop_size": 224,
+  "normalize": "True",
+  "epoch": 50,
+  "log_every": 5
+}
