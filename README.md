@@ -32,7 +32,7 @@ python preprocess/wsi/bin/patch_gen.py {wsi_path} {coords_path} {patch_path}
 ## Train and test the model
 Run main.py to train and test the model, put the checkpoints in "checkpoints" file. 
 
-###Anomaly Map Generation
+### Anomaly Map Generation
 set vis = Ture in main.py
 ```shell
 python main.py {wsi_path} {ckpt_path} {cfg_path} {mask_path} {probs_map_path}
