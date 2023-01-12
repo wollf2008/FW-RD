@@ -1,11 +1,11 @@
 # SLFCD
 ## Preprocess
-###Annotations
+### Annotations
 xml annotation to json
 ```shell
 python preprocess/wsi/bin/camelyon16xml2json.py {original_dataset/camelyon16/testing/lesion_annotations/} {preprocess/jsons/test/}
 ```
-###Generate image patches
+### Generate image patches
 1. Generate tissue masks for WSIs
 ```shell
 python preprocess/wsi/bin/tissue_mask.py original_dataset/camelyon16/testing/images original_dataset/camelyon16/testing/images_tissue
@@ -27,3 +27,22 @@ python preprocess/wsi/bin/sampled_spot_gen.py original_dataset/camelyon16/testin
 python preprocess/wsi/bin/patch_gen.py original_dataset/camelyon16/training/tumor preprocess/coords/train_bad.txt data/camelyon16/train/bad
 ```
 
+## Train and test the model
+```shell
+python main.py original_dataset/camelyon16/testing/images/ checkpoints/0detection_camelyon166.pth preprocess/configs/wideresnet_50.json original_dataset/camelyon16/testing/images_tissue/ result/
+```
+## Postprocess
+
+```shell
+python main.py original_dataset/camelyon16/testing/images/ checkpoints/0detection_camelyon166.pth preprocess/configs/wideresnet_50.json original_dataset/camelyon16/testing/images_tissue/ result/
+```
+### AUROC Evaluation
+### FROC Evaluation
+1. Tumor localization
+```shell
+python preprocess/wsi/bin/nms.py result/modified/ result/csv/
+```
+2.FROC evaluation
+```shell
+python preprocess/wsi/bin/Evaluation_FROC.py original_dataset/camelyon16/testing/images_mask result/csv
+```
