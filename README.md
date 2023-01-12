@@ -33,14 +33,27 @@ python preprocess/wsi/bin/patch_gen.py {wsi_path} {coords_path} {patch_path}
 ```shell
 python main.py original_dataset/camelyon16/testing/images/ checkpoints/0detection_camelyon166.pth preprocess/configs/wideresnet_50.json original_dataset/camelyon16/testing/images_tissue/ result/
 ```
+Please save the anomaly maps for tumor and normal WSIs in separate files: {probs_map_path}/good for normal and {probs_map_path}/bad for tumor
+
 ## Postprocess
 ### AUROC Evaluation
+1. AUROC Evaluation
+```shell
+python preprocess/wsi/bin/AUROC_plot.py {probs_map_path}
+```
+
+2.Heatmap Generation
+```shell
+python preprocess/wsi/bin/AUROC_plot.py {image_path}
+```
 
 ### FROC Evaluation
 1. Tumor localization
 ```shell
 python preprocess/wsi/bin/nms.py {probs_map_path} {coord_path}
 ```
+
+
 2.FROC evaluation
 ```shell
 python preprocess/wsi/bin/Evaluation_FROC.py {Camelyon16_test_image_mask} {coord_path}
