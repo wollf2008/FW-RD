@@ -1,5 +1,25 @@
-# FW_RD
+# FW-RD
+## Prerequisites
+### Environment
+* Python (3.8)
+* Numpy (1.20.3)
+* Scipy (1.7.1)
+* [PyTorch (0.3.1)/CUDA 8.0](https://pytorch.org/previous-versions/)
+* torchvision (0.2.0)
+* PIL (8.3.2)
+* scikit-image (0.13.1)
+* [OpenSlide 3.4.1](https://openslide.org/)
+* matplotlib (2.2.2)
+* sklearn (1.0)
+
+### Dataset
+The main data are the whole slide images (WSI) in `*.tif` format from the [Camelyon16](https://camelyon17.grand-challenge.org/) challenge. You may also download the dataset at [GigaDB](http://gigadb.org/dataset/100439). There are 400 WSis in total, together about 700GB+. Once you download all the slides, please put all the tumor slides and normal slides for training under one same directory.
+
+The Camelyon16 dataset also provides pixel level annotations of tumor regions for each tumor slide in xml format. You can use them to generate tumor masks for each WSI.
+
 ## Preprocess
+In order to train WSIs with deep learning models, we need to crop WSIs into 256*256 patches.
+
 ### Annotations
 xml annotation to json
 ```shell
