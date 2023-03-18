@@ -17,8 +17,9 @@ The main data are the whole slide images (WSI) in `*.tif` format from the [Camel
 
 The Camelyon16 dataset also provides pixel level annotations of tumor regions for each tumor slide in xml format. You can use them to generate tumor masks for each WSI.
 
-#Model
-![FW-RD](/image/NCRF.png)
+# Model
+![FW-RD](/image/1.2.png)
+This is the main structure of our project. In order to train and test our model, we need to crop WSIs in to 256*256 small patches. The selection and cropping process are shown in Preprocess part.
 
 ## Preprocess
 In order to train WSIs with deep learning models, we need to crop WSIs into 256*256 patches.
