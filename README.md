@@ -45,7 +45,7 @@ python preprocess/wsi/bin/non_tumor_mask.py {tumor_path} {tissue_path} {normal_p
 ```shell
 python preprocess/wsi/bin/sampled_spot_gen.py {mask_path} {coords_path} /maximum # of patch for each WSI/
 ```
-You may generate 6 txt files, such as tumor_train.txt, normal_train.txt, tumor_val.txt, normal_val.txt, tumor_test.txt, normal_test.txt
+I have included the coordinates of pre-sampled patches used in the paper for training and testing. They are located at [perprocess/coords](perprocess/coords/).
 
 5. Generate patches for training and testing use
 ```shell
