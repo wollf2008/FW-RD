@@ -107,7 +107,7 @@ We use non-maximal suppression (nms) algorithm to obtain the coordinates of each
 ```shell
 python preprocess/wsi/bin/nms.py {probs_map_path} {coord_path}
 ```
-where {probs_map_path} is where you saved the generated probability map, and {coord_path} is where you want to save the generated coordinates of each tumor regions at level 0 in csv format. There is an optional command --level with default value 6, and make sure it's consistent with the level used for the corresponding tissue mask and probability map.
+Where {probs_map_path} is where you saved the generated probability map, and {coord_path} is where you want to save the generated coordinates of each tumor regions at level 0 in csv format. There is an optional command --level with default value 6, and make sure it's consistent with the level used for the corresponding tissue mask and probability map.
 
 2.FROC evaluation
 With the coordinates of tumor regions for each test WSI, we can finally evaluate the average FROC score of tumor localization.
