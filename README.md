@@ -93,7 +93,6 @@ Note, Test_049 and Test_114 are excluded from the evaluation as noted by the Cam
 ```shell
 python preprocess/wsi/bin/AUROC_plot.py {probs_map_path}
 ```
-![FW-RD](/image/ROC_curve.png)
 
 2.Heatmap Generation
 ```shell
@@ -115,3 +114,10 @@ With the coordinates of tumor regions for each test WSI, we can finally evaluate
 python preprocess/wsi/bin/Evaluation_FROC.py {Camelyon16_test_image_mask} {coord_path}
 ```
 {Camelyon16_test_image_mask} is where you put the ground truth tif mask files of the test set, and {coord_path} is where you saved the generated tumor coordinates. Evaluation_FROC.py is based on the evaluation code provided by the Camelyon16 organizers with minor modification. 
+
+ ## Reference
+	@InProceedings{MIDL2023,
+    author    = {He, Yinsheng and Li, Xingyu},
+    title     = {Whole-slide-imaging Cancer Metastases Detection and Localization with Limited Tumorous Data}
+
+
