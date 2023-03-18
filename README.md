@@ -75,7 +75,20 @@ set vis = Ture in main.py
 ```shell
 python main.py {wsi_path} {ckpt_path} {cfg_path} {mask_path} {probs_map_path}
 ```
-cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the tissue mask. Please put the anomaly maps for tumor and normal WSIs in separate files: {probs_map_path}/good for normal and {probs_map_path}/bad for tumor.
+cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the tissue mask. Please save the anomaly maps for tumor and normal WSIs with following path:
+```
+├── data/
+│   ├── camelyon16/
+│   │   ├── train/
+│   │   │   ├── good/
+│   │   │   ├── bad/
+│   │   ├── test/   
+│   │   │   ├── good/
+│   │   │   ├── tumor/
+│   │   ├── val/   
+│   │   │   ├── good/
+│   │   │   ├── tumor/
+```
 
 ## Postprocess
 ### AUROC Evaluation
