@@ -46,11 +46,25 @@ python preprocess/wsi/bin/non_tumor_mask.py {tumor_path} {tissue_path} {normal_p
 ```shell
 python preprocess/wsi/bin/sampled_spot_gen.py {mask_path} {coords_path} /maximum # of patch for each WSI/
 ```
-I have included the coordinates of pre-sampled patches used in the paper for training and testing. They are located at [perprocess/coords](perprocess/coords/).
+I have included the coordinates of pre-sampled patches used in the paper for training and testing. They are located at [perprocess/coords](perprocess/coords).
 
 5. Generate patches for training and testing use
 ```shell
 python preprocess/wsi/bin/patch_gen.py {wsi_path} {coords_path} {patch_path}
+```
+Please save the generated patches with following sequence:
+```
+├── data/
+│   ├── camelyon16/
+│   │   ├── train/
+│   │   │   ├── good/
+│   │   │   ├── bad/
+│   │   ├── test/   
+│   │   │   ├── good/
+│   │   │   ├── tumor/
+│   │   ├── val/   
+│   │   │   ├── good/
+│   │   │   ├── tumor/
 ```
 
 ## Train and test the model
