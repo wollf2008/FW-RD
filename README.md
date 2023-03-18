@@ -69,25 +69,20 @@ Please save the generated patches with following sequence:
 
 ## Train and test the model
 Run main.py to train and test the model, put the checkpoints in "checkpoints" file. 
+```shell
+python main.py
+```
 
 ### Anomaly Map Generation
 set vis = Ture in main.py
 ```shell
 python main.py {wsi_path} {ckpt_path} {cfg_path} {mask_path} {probs_map_path}
 ```
-cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the tissue mask. Please save the anomaly maps for tumor and normal WSIs with following path:
+cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the tissue mask for test WSIs, you can generate them follow the instruction in [Camelyon17](https://camelyon17.grand-challenge.org/) challenge. Please save the anomaly maps for tumor and normal WSIs with following path:
 ```
-├── data/
-│   ├── camelyon16/
-│   │   ├── train/
-│   │   │   ├── good/
-│   │   │   ├── bad/
-│   │   ├── test/   
-│   │   │   ├── good/
-│   │   │   ├── tumor/
-│   │   ├── val/   
-│   │   │   ├── good/
-│   │   │   ├── tumor/
+├── results/
+│   ├── good/
+│   ├── tumor/
 ```
 
 ## Postprocess
