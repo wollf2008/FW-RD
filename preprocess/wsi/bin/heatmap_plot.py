@@ -10,8 +10,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../')
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('image_path', default=None, metavar='IMAGE_PATH',
-                    type=str, help='Anomoly image path')
+parser.add_argument('prob_map', default=None, metavar='PROB_PATH',
+                    type=str, help='Path to the probability map')
 args = parser.parse_args()
 
 def min_max_norm(image):
@@ -22,7 +22,7 @@ def cvt2heatmap(gray):
     heatmap = cv2.applyColorMap(np.uint8(gray), cv2.COLORMAP_JET)
     return heatmap
 
-heatmap = np.load(args.image_path)
+heatmap = np.load(args.prob_map)
 
 th = 0.1
 img = gaussian_filter(heatmap, sigma=1)
@@ -43,6 +43,6 @@ img = cvt2heatmap(img * 255)
 
 plt.imshow(img)
 plt.show()
-cv2.imwrite('ad.png', img)
+cv2.imwrite('./results/heatmap.png', img)
 
 
