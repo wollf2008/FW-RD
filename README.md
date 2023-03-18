@@ -86,25 +86,32 @@ cfg file for RD model is under '\preprocess\configs'. {mask_path} indicates the 
 ```
 
 ## Postprocess
+Note, Test_049 and Test_114 are excluded from the evaluation as noted by the Camelyon16 organizers.
+
 ### AUROC Evaluation
 1. AUROC Evaluation
 ```shell
 python preprocess/wsi/bin/AUROC_plot.py {probs_map_path}
 ```
+![FW-RD](/image/ROC_curve.png)
 
 2.Heatmap Generation
 ```shell
-python preprocess/wsi/bin/AUROC_plot.py {image_path}
+python preprocess/wsi/bin/heatmap_plot.py {prob_map}
 ```
+![FW-RD](/image/heatmap.PNG)
 
 ### FROC Evaluation
 1. Tumor localization
+We use non-maximal suppression (nms) algorithm to obtain the coordinates of each detectd tumor region at level 0 given a probability map.
 ```shell
 python preprocess/wsi/bin/nms.py {probs_map_path} {coord_path}
 ```
-
+where {probs_map_path} is where you saved the generated probability map, and {coord_path} is where you want to save the generated coordinates of each tumor regions at level 0 in csv format. There is an optional command --level with default value 6, and make sure it's consistent with the level used for the corresponding tissue mask and probability map.
 
 2.FROC evaluation
+With the coordinates of tumor regions for each test WSI, we can finally evaluate the average FROC score of tumor localization.
 ```shell
 python preprocess/wsi/bin/Evaluation_FROC.py {Camelyon16_test_image_mask} {coord_path}
 ```
+{Camelyon16_test_image_mask} is where you put the ground truth tif mask files of the test set, and {coord_path} is where you saved the generated tumor coordinates. Evaluation_FROC.py is based on the evaluation code provided by the Camelyon16 organizers with minor modification. 
